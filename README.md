@@ -1,11 +1,11 @@
 # Graphene Field-Effect Transistors (GFET) Nanobiosensors
 
-## 📌 Abstract & Overview
+## Abstract & Overview
 This project explores the design, theoretical modeling, and computational simulation of a **Graphene-based Nanobiosensor** using TCAD Sentaurus. Field-Effect Transistor (FET) biosensors leverage intrinsic charge properties of biomolecules to achieve label-free detection. 
 
 By replacing traditional silicon with a single-atomic-layer of Graphene—which has extraordinary electronic properties and high carrier mobility—the sensor achieves ultra-sensitivity. This research focuses on utilizing GFETs for the rapid and label-free detection of viral diseases, genetic variations, and biomarkers like Monoclonal antibodies (IgG) and alpha-fetoprotein (AFP).
 
-## 🔬 Computational Simulation (TCAD Sentaurus)
+## Computational Simulation (TCAD Sentaurus)
 
 The physical structure and electrical characteristics of the GFET were modeled and meshed using the Sentaurus Structure Editor (SDE) and Sentaurus Device (SDEVICE) tools. The raw simulation code is provided in this repository:
 
@@ -27,7 +27,7 @@ Due to fabrication constraints, the computational model utilized electrically si
 1. **Charge Screening Reduction**: Deformed/concave nanoscale structures in the graphene layer minimize charge screening (Debye screening), drastically enhancing sensitivity to target molecules.
 2. **Electrical Hotspots**: Simulation confirms that nanoscale deformations act as localized regions of extreme sensitivity, enabling the detection of biomolecules at attomolar concentrations.
 
-## 📊 Results Analysis
+## Results Analysis
 
 The simulation sweeps the Gate Voltage (0V to 5V) to observe the Drain Current ($I_{ds}$). 
 
@@ -41,7 +41,7 @@ The simulation sweeps the Gate Voltage (0V to 5V) to observe the Drain Current (
 ![Experimental TCAD Result](experimental_results.png)
 *Our simulation displayed an exponentially decaying curve. Detailed analysis in the report traces this deviation to limits in drift-diffusion models for atomically thin 2D materials, emphasizing the need for Monte Carlo or quantum transport simulation models for perfect graphene replication.*
 
-## 📂 Repository Contents
+## Repository Contents
 * `GFET_Research_Report.pdf`: The comprehensive Study Oriented Project (SOP) report submitted to BITS Pilani, containing full literature reviews on probe functionalization (DNA/IgG/Fab) and in-depth SDE code snippets.
 * `sde_structure_mesh.scm`: The raw SDE structure generation code.
 * `sdevice_simulation.cmd`: The SDEVICE setup configuration.
