@@ -1,0 +1,46 @@
+(sdegeo:create-cuboid (position 0 0 0) (position 150 150 100) "Silicon" "region_1")
+(sdegeo:create-cuboid (position 0 0 100) (position 150 150 100.3) "SiO2" "region_2")
+(sdegeo:create-cuboid (position 30 48.5 100.3) (position 120 101.5 100.30035) "PolySilicon" "region_3")
+(sdegeo:set-default-boolean "BAB")
+"ABA"
+(sdegeo:create-cuboid (position 0 0 100.3) (position 150 51 100.32) "Titanium" "region_1")
+(sdegeo:create-cuboid (position 0 150 100.3) (position 150 99 100.32) "Titanium" "region_2")
+(sdegeo:create-cuboid (position 0 0 100.32) (position 150 51 100.42) "Gold" "region_3")
+(sdegeo:create-cuboid (position 0 150 100.32) (position 150 99 100.42) "Gold" "region_4")
+(sdegeo:set-default-boolean "BAB")
+"ABiA"
+(sdegeo:create-cuboid (position 0 25 100.3) (position 150 52.5 100.5) "Si3N4" "region_2")
+(sdegeo:create-cuboid (position 0 125 100.3) (position 150 97.5 100.5) "Si3N4" "region_1")
+(sdegeo:create-cuboid (position 0 35 100.5) (position 150 45 110.5) "SiO2" "region_1")
+(sdegeo:create-cuboid (position 0 105 100.5) (position 150 115 110.5) "SiO2" "region_2")
+(sdedr:define-constant-profile "BoronDopingProfile" "BoronActiveConcentration" 1e18)
+(sdedr:define-constant-profile-material "SisubstrateDoping" "BoronDopingProfile" "Silicon")
+(render:rebuild)
+(sdegeo:define-contact-set "source" 4 (color:rgb 1 0 0 ) "##")
+(sdegeo:define-contact-set "drain" 4 (color:rgb 1 0 0 ) "##")
+(sdegeo:define-contact-set "gate" 4 (color:rgb 1 0 0 ) "##")
+(sdegeo:set-contact (list (car (find-face-id (position 75 137.5 100.42)))) "drain")
+(render:rebuild)
+(sdegeo:set-current-contact-set "source")
+(sdegeo:set-contact (list (car (find-face-id (position 75 12.5 100.42)))) "source")
+(render:rebuild)
+(sdegeo:set-current-contact-set "gate")
+(sdegeo:set-contact (list (car (find-face-id (position 135 75 100.3))) (car (find-face-id 
+(position 75 75 100.30035))) (car (find-face-id (position 75 48.75 100.5))) (car (find-face-id 
+(position 75 45 105.5))) (car (find-face-id (position 75 101.25 100.5))) (car (find-face-id 
+(position 15 75 100.3))) (car (find-face-id (position 75 105 105.5))) (car (find-face-id (position 
+75 75 100.3)))) "gate")
+(sdegeo:define-contact-set "substrate" 4 (color:rgb 1 0 0 ) "##")
+(sdegeo:set-current-contact-set "substrate")
+(sdegeo:set-contact (list (car (find-face-id (position 75 75 0)))) "substrate")
+(render:rebuild)
+
+; Meshing Strategy
+(sdedr:define-refeval-window "RefEvalWin_1" "Cuboid" (position -50 -50 -50) (position 200 200 150))
+(sdedr:define-refinement-size "RefDef.Global" 10 10 10 2.5 2.5 2.5 )
+(sdedr:define-refinement-placement "Place.Global" "RefDef.Global" (list "window" "RefEvalWin_1" ) )
+(sdedr:define-refinement-function "RefDef.Global" "MaxLenInt" "Silicon" "SiO2" 0.05 1.5)
+(sdedr:define-refinement-size "RefDef.Global" 10 10 10 2.5 2.5 2.5 )
+(sdedr:define-refinement-placement "Place.Global" "RefDef.Global" (list "window" "RefEvalWin_1" ) )
+(sdedr:define-refinement-function "RefDef.Global" "MaxLenInt" "Silicon" "SiO2" 0.05 1.5)
+(sde:build-mesh "n@node@")

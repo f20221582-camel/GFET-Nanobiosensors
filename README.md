@@ -7,7 +7,14 @@ By replacing traditional silicon with a single-atomic-layer of Graphene—which 
 
 ## 🔬 Computational Simulation (TCAD Sentaurus)
 
-The physical structure and electrical characteristics of the GFET were modeled and meshed using the Sentaurus Structure Editor (SDE) and Sentaurus Device (SDEVICE) tools.
+The physical structure and electrical characteristics of the GFET were modeled and meshed using the Sentaurus Structure Editor (SDE) and Sentaurus Device (SDEVICE) tools. The raw simulation code is provided in this repository:
+
+* 📄 **[`sde_structure_mesh.scm`](sde_structure_mesh.scm)**: The Scheme-based SDE script that mathematically generates the 3D cuboid structures, dielectric masks, and defines the complex meshing refinement windows for the GFET.
+* 📄 **[`sdevice_simulation.cmd`](sdevice_simulation.cmd)**: The SDEVICE command script that defines the physical models (Fermi, SRH Recombination, OldSlotboom) and configures the Quasistationary gate voltage sweeps to plot the Drain Current characteristics.
+
+### 3D Structure & Meshing
+![TCAD 3D Mesh](tcad_3d_mesh.png)
+*(3D meshed structure of the GFET generated on the SVISUAL tool)*
 
 ### Device Architecture
 Due to fabrication constraints, the computational model utilized electrically similar substitute materials while retaining the exact geometric behavior of a pure GFET:
@@ -36,4 +43,5 @@ The simulation sweeps the Gate Voltage (0V to 5V) to observe the Drain Current (
 
 ## 📂 Repository Contents
 * `GFET_Research_Report.pdf`: The comprehensive Study Oriented Project (SOP) report submitted to BITS Pilani, containing full literature reviews on probe functionalization (DNA/IgG/Fab) and in-depth SDE code snippets.
-* `expected_results.png` & `experimental_results.png`: Graphical results of the TCAD sweep.
+* `sde_structure_mesh.scm`: The raw SDE structure generation code.
+* `sdevice_simulation.cmd`: The SDEVICE setup configuration.
